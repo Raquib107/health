@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Doctor;
+use App\Category;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -63,10 +65,36 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        if($data['doctor']==='no')
+        {
+         $doctor=new Doctor;
+
+         //$doctor->reg_no= $data['Registration'];
+         $doctor->reg_no= $data['Registration'];
+         $doctor->Affiliation= $data['Affiliation'];
+         $doctor->save();
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    //------------new addition, overriding trait's methods---------------
+
+    public function showRegistrationForm()
+    {
+        if (property_exists($this, 'registerView')) {
+            return view($this->registerView);
+        }
+
+        $category = Category::lists('Speciality');
+
+
+
+        return view('auth.register')->with('categories', $category);;
+    }
+
 }

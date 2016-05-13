@@ -66,6 +66,63 @@
                             </div>
                         </div>
 
+
+
+                        {{--new--}}
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="doctor"> Doctor
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                         <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div>
+                                    <label>
+                                        {{ Form::select('category', $categories) }}
+                                        </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('Affiliation') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Affiliation</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="Affiliation" value="{{ old('Affiliation') }}">
+
+                                @if ($errors->has('Affiliation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Affiliation') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group{{ $errors->has('Registraton') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Registraton No.</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="Registraton" value="{{ old('Registraton') }}">
+
+                                @if ($errors->has('Registraton'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Registraton') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
