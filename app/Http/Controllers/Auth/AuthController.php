@@ -63,23 +63,34 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
+
+
+    //------------changed it---------------
     protected function create(array $data)
     {
-        if($data['doctor']==='no')
+        $newuser= User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+
+       
+
+        if($data['type']==='doctor')
         {
          $doctor=new Doctor;
-
-         //$doctor->reg_no= $data['Registration'];
+         
+         $doctor->validity="false";
+         $doctor->user_id= $newuser->id;
+         $doctor->Category_id= $data['category']+1;
          $doctor->reg_no= $data['Registration'];
          $doctor->Affiliation= $data['Affiliation'];
          $doctor->save();
         }
 
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        
+        //echo "yes";
+        return $newuser;
     }
 
     //------------new addition, overriding trait's methods---------------
@@ -96,5 +107,22 @@ class AuthController extends Controller
 
         return view('auth.register')->with('categories', $category);;
     }
+
+
+
+    // public function register(Request $request)
+    // {
+    //     $validator = $this->validator($request->all());
+
+    //     if ($validator->fails()) {
+    //         $this->throwValidationException(
+    //             $request, $validator
+    //         );
+    //     }
+
+    //     Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+    //     return redirect($this->redirectPath());
+    // }
 
 }

@@ -70,6 +70,7 @@
 
                         {{--new--}}
 
+                        {{--
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
@@ -79,14 +80,36 @@
                                 </div>
                             </div>
                         </div>
+                        --}}
 
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Who are you? </label>
+                            <div class="col-md-6">
+                                <input name="type" type="radio" value="doctor"> Doctor<br>
+                                <input name="type" type="radio" value="user"> User
+                            </div>
+                        </div>
+                            
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <label class="col-md-15 ">If you are a doctor, fill up the following field </label>
+                            </div>
+                        </div>
+
+
+                        
 
                          <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                         <label class="col-md-4 control-label">Your specialty</label>
+                            <div class="col-md-6">
                                 <div>
-                                    <label>
+                                    
                                         {{ Form::select('category', $categories) }}
-                                        </label>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -108,15 +131,15 @@
 
 
 
-                        <div class="form-group{{ $errors->has('Registraton') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Registraton No.</label>
+                        <div class="form-group{{ $errors->has('Registration') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Registration No.</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="Registraton" value="{{ old('Registraton') }}">
+                                <input type="text" class="form-control" name="Registration" value="{{ old('Registration') }}">
 
-                                @if ($errors->has('Registraton'))
+                                @if ($errors->has('Registration'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Registraton') }}</strong>
+                                        <strong>{{ $errors->first('Registration') }}</strong>
                                     </span>
                                 @endif
                             </div>
