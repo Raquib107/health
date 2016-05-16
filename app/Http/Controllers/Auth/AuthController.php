@@ -30,7 +30,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new authentication controller instance.
@@ -86,6 +86,13 @@ class AuthController extends Controller
          $doctor->reg_no= $data['Registration'];
          $doctor->Affiliation= $data['Affiliation'];
          $doctor->save();
+         $newuser->role="doctor";
+         $newuser->save();
+        }
+        else
+        {
+            $newuser->role="user";
+            $newuser->save();
         }
 
         
@@ -105,7 +112,7 @@ class AuthController extends Controller
 
 
 
-        return view('auth.register')->with('categories', $category);;
+        return view('auth.register')->with('categories', $category);
     }
 
 
