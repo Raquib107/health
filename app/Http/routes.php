@@ -22,3 +22,9 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/admin', 'HomeController@admin');
+
+Route::delete('/admin/delete={id}', 'HomeController@adminDelete');
+
+Route::delete('/admin/verify={id}', 'HomeController@adminVerify');

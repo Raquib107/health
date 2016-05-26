@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+
         $newdoctor=Doctor::where('user_id', '=', Auth::user()->id)->first(); //get dile collection return kore, oita array r moto access na korle collection:id ei error dibe
         if($newdoctor!==null)
         {
@@ -35,6 +35,64 @@ class HomeController extends Controller
             }
         }
 
+        //redirect the admin to admin page from /home
+        if (Auth::check())
+        {
+            if(Auth::user()->role==='admin')
+            {
+                return redirect(url('/').'/'.'admin');
+            }
+        }
+
         return view('home');
     }
+
+    //admin page controller
+    public function admin()
+    {
+        $newdoctor=Doctor::where('validity', '=', 'false')->get();
+        if (Auth::check())
+        {
+            if(Auth::user()->role==='admin')
+            {
+                return view('admin')->with('members', $newdoctor);
+            }
+        }
+    }
+
+    public function adminDelete(Request $request)
+    {
+
+        Doctor::destroy($request->id);
+
+        $newdoctor=Doctor::where('validity', '=', 'false')->get();
+        if (Auth::check())
+        {
+            if(Auth::user()->role==='admin')
+            {
+                return view('admin')->with('members', $newdoctor);
+            }
+        }
+        
+    }
+
+    public function adminVerify(Request $request)
+    {
+
+        $newdoctor=Doctor::find($request->id);
+
+        if (Auth::check())
+        {
+            if(Auth::user()->role==='admin')
+            {
+                $newdoctor->validity='true';
+                $newdoctor->save();
+            }
+        }
+
+        $newdoctor=Doctor::where('validity', '=', 'false')->get();
+        return view('admin')->with('members', $newdoctor);
+
+    }
+
 }
