@@ -154,6 +154,8 @@
                             </div>
                         </div>
                     </form>
+
+                    <li><a href="{{ url('/serviceRegister') }}">Click here to submit your service company's info</a></li>
                 </div>
             </div>
         </div>
