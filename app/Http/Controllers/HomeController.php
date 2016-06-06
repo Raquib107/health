@@ -56,11 +56,13 @@ class HomeController extends Controller
     {
         $newdoctor=Doctor::where('validity', '=', 'false')->get();
         $services=Service::where('validity', '=', 'false')->get();
+        $doctor2=Doctor::where('validity', '=', 'true')->get();
+        $services2=Service::where('validity', '=', 'true')->get();
         if (Auth::check())
         {
             if(Auth::user()->role==='admin')
             {
-                return view('admin',array('members'=>$newdoctor, 'service'=>$services));
+                return view('admin',array('members'=>$newdoctor, 'service'=>$services, 'members2'=>$doctor2, 'services2'=>$services2));
             }
         }
     }
@@ -72,11 +74,13 @@ class HomeController extends Controller
 
         $newdoctor=Doctor::where('validity', '=', 'false')->get();
         $services=Service::where('validity', '=', 'false')->get();
+        $doctor2=Doctor::where('validity', '=', 'true')->get();
+        $services2=Service::where('validity', '=', 'true')->get();
         if (Auth::check())
         {
             if(Auth::user()->role==='admin')
             {
-                return view('admin',array('members'=>$newdoctor, 'service'=>$services));
+                return view('admin',array('members'=>$newdoctor, 'service'=>$services, 'members2'=>$doctor2, 'services2'=>$services2));
             }
         }
         
@@ -98,8 +102,10 @@ class HomeController extends Controller
 
         $newdoctor=Doctor::where('validity', '=', 'false')->get();
         $services=Service::where('validity', '=', 'false')->get();
+        $doctor2=Doctor::where('validity', '=', 'true')->get();
+        $services2=Service::where('validity', '=', 'true')->get();
         
-        return view('admin',array('members'=>$newdoctor, 'service'=>$services));
+        return view('admin',array('members'=>$newdoctor, 'service'=>$services, 'members2'=>$doctor2, 'services2'=>$services2));
             
 
     }
@@ -111,11 +117,13 @@ class HomeController extends Controller
 
         $newdoctor=Doctor::where('validity', '=', 'false')->get();
         $services=Service::where('validity', '=', 'false')->get();
+        $doctor2=Doctor::where('validity', '=', 'true')->get();
+        $services2=Service::where('validity', '=', 'true')->get();
         if (Auth::check())
         {
             if(Auth::user()->role==='admin')
             {
-                return view('admin',array('members'=>$newdoctor, 'service'=>$services));
+                return view('admin',array('members'=>$newdoctor, 'service'=>$services, 'members2'=>$doctor2, 'services2'=>$services2));
             }
         }
         
@@ -137,8 +145,10 @@ class HomeController extends Controller
 
         $newdoctor=Doctor::where('validity', '=', 'false')->get();
         $services=Service::where('validity', '=', 'false')->get();
+        $doctor2=Doctor::where('validity', '=', 'true')->get();
+        $services2=Service::where('validity', '=', 'true')->get();
         
-        return view('admin',array('members'=>$newdoctor, 'service'=>$services));
+        return view('admin',array('members'=>$newdoctor, 'service'=>$services, 'members2'=>$doctor2, 'services2'=>$services2));
             
     }
 

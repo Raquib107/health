@@ -67,6 +67,19 @@
                         </div>
 
 
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">Phone No</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         {{--new--}}
 
@@ -87,7 +100,7 @@
                             <label class="col-md-4 control-label">Who are you? </label>
                             <div class="col-md-6">
                                 <input name="type" type="radio" value="doctor"> Doctor<br>
-                                <input name="type" type="radio" value="user"> User
+                                <input checked="checked" name="type" type="radio" value="user"> User
                             </div>
                         </div>
                             

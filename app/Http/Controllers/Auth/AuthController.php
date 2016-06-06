@@ -50,11 +50,26 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        if($data['type']==='doctor')
+        {
+            return Validator::make($data, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'phone' => 'required|max:255',
+                'Registration' => 'required|max:255',
+                'Affiliation' => 'required|max:255',
+                ]);
+        }
+        else
+        {
+            return Validator::make($data, [
+                'name' => 'required|max:255',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:6|confirmed',
+                'phone' => 'required|max:255',
+                ]);
+        }
     }
 
     /**
@@ -72,14 +87,14 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
 
-       
+
 
         if($data['type']==='doctor')
         {
          $doctor=new Doctor;
-         
+
          $doctor->validity="false";
          $doctor->user_id= $newuser->id;
          $doctor->Category_id= $data['category']+1;
@@ -88,32 +103,32 @@ class AuthController extends Controller
          $doctor->save();
          $newuser->role="doctor";
          $newuser->save();
-        }
-        else
-        {
-            $newuser->role="user";
-            $newuser->save();
-        }
-
-        
-        //echo "yes";
-        return $newuser;
+     }
+     else
+     {
+        $newuser->role="user";
+        $newuser->save();
     }
+
+
+        //echo "yes";
+    return $newuser;
+}
 
     //------------new addition, overriding trait's methods---------------
 
-    public function showRegistrationForm()
-    {
-        if (property_exists($this, 'registerView')) {
-            return view($this->registerView);
-        }
-
-        $category = Category::lists('Speciality');
-
-
-
-        return view('auth.register')->with('categories', $category);
+public function showRegistrationForm()
+{
+    if (property_exists($this, 'registerView')) {
+        return view($this->registerView);
     }
+
+    $category = Category::lists('Speciality');
+
+
+
+    return view('auth.register')->with('categories', $category);
+}
 
 
 
