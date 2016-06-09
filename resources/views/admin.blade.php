@@ -187,7 +187,7 @@
     <div class="row">
 
       <header class="sec-heading">
-        <h2>Unverified Doctor list</h2>
+        <h2>Verified Doctor list</h2>
         <span class="subheading">Confirm or Delete</span>
     </header>
     @if (count($members2) > 0)

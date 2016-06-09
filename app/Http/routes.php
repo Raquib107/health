@@ -6,7 +6,7 @@ use App\Location;
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Application Routes version 2.1
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
@@ -43,3 +43,38 @@ Route::post('/serviceRegister', 'DummyController@serviceCreate');
 Route::delete('/admin/servicedelete={id}', 'HomeController@serviceDelete');
 
 Route::delete('/admin/serviceverify={id}', 'HomeController@serviceVerify');
+
+Route::get('/search','PagesController@search');
+Route::post('/search_service','PagesController@search');
+Route::post('/search_doc','PagesController@search_doctor');
+
+//after raquibbox
+Route::post('/appointment/doctor={id}', 'HomeController@appointmentPage');
+Route::post('/appointment/make={id}', 'HomeController@appointment');
+
+//own editprofile
+Route::get('/editprofile', 'HomeController@editProfilePage');
+Route::post('/editprofile', 'HomeController@editProfile');
+
+// Route::get('/passwordchange', 'HomeController@editProfilePage');
+// Route::post('/editprofile', 'HomeController@editProfile');
+
+Route::get('/doctorprofile', 'HomeController@doctorEditProfilePage');
+Route::post('/addchamber', 'HomeController@addChamber');
+Route::post('/addschedule', 'HomeController@addSchedule');
+
+//profile
+Route::get('/profile', 'newController@profile');
+Route::post('/profile/doctor={id}', 'newController@doctorPage');
+
+//edit schedule
+Route::post('/editSchedule', 'HomeController@editSchedule');
+
+//user show appointment
+Route::get('/user/appointment/show', 'PagesController@show_user_app');
+Route::get('/doc/schedule/show', 'PagesController@show_doc_app');
+Route::delete('/user/appointment/delete={id}', 'HomeController@userAppointmentDelete');
+
+Route::delete('doc/schedule/delete={id}', 'HomeController@doctorScheduleDelete');
+
+
